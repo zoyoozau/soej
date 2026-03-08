@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Kanit', system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Kanit', sans-serif;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Custom Utilities for gradients and specific design elements from the reference */
+@layer utilities {
+  .bg-gradient-header {
+    background: linear-gradient(135deg, #FF99FF 0%, #FF66CC 100%);
+  }
+}
