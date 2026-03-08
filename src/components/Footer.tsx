@@ -57,7 +57,7 @@ const Footer = () => {
                                 "ทีมการตลาดส่วนตัว"
                             </div>
 
-                            <img src="/footter01.webp" alt="SOEJ Team" className="w-full h-auto drop-shadow-2xl relative z-10 rounded-2xl" />
+                            <img src={`${import.meta.env.BASE_URL}footter01.webp`} alt="SOEJ Team" className="w-full h-auto drop-shadow-2xl relative z-10 rounded-2xl" />
 
                             {/* Decorative floating elements could be added here */}
                             <div className="absolute top-1/2 -left-10 w-24 h-24 bg-white/20 rounded-full blur-xl z-0"></div>

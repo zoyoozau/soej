@@ -56,24 +56,24 @@ const Services = () => {
 
                             {/* Card 1 */}
                             <div className="absolute left-1/2 -translate-x-1/2 sm:-translate-x-[60%] lg:-translate-x-2/3 top-0 w-[240px] sm:w-[280px] z-10 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-                                <img src="/Card01.png" alt="Live Promo 1" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
+                                <img src={`${import.meta.env.BASE_URL}Card01.png`} alt="Live Promo 1" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
                             </div>
 
                             {/* Card 2 */}
                             <div className="absolute left-1/2 -translate-x-1/2 top-20 w-[260px] sm:w-[300px] z-20 hover:scale-105 transition-transform duration-300">
-                                <img src="/Card02.png" alt="Live Promo 2" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
+                                <img src={`${import.meta.env.BASE_URL}Card02.png`} alt="Live Promo 2" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
                             </div>
 
                             {/* Stats Card overlapping */}
                             <div className="absolute right-1/2 translate-x-1/2 sm:translate-x-[60%] top-1/2 w-[220px] sm:w-[260px] z-30 transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                                <img src="/Card03.png" alt="Live Stats" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
+                                <img src={`${import.meta.env.BASE_URL}Card03.png`} alt="Live Stats" className="w-full h-auto drop-shadow-2xl rounded-3xl" />
                             </div>
 
                         </div>
 
                         {/* Phone Live Interface Mockup */}
                         <div className="w-full lg:w-1/2 flex justify-center relative scale-90 sm:scale-100">
-                            <img src="/card06.png" alt="Live Interface" className="w-auto h-[600px] object-contain drop-shadow-2xl" />
+                            <img src={`${import.meta.env.BASE_URL}card06.png`} alt="Live Interface" className="w-auto h-[600px] object-contain drop-shadow-2xl" />
                         </div>
                     </div>
 

@@ -61,7 +61,7 @@ const Hero = () => {
                     <div className="relative z-20 w-[300px] h-[600px] sm:w-[350px] sm:h-[700px]">
                         {/* Phone Image from public folder */}
                         <img
-                            src="/MobileMocup.png"
+                            src={`${import.meta.env.BASE_URL}MobileMocup.png`}
                             alt="Mobile App Mockup"
                             className="w-full h-full object-contain drop-shadow-2xl"
                         />
@@ -89,7 +89,7 @@ const Hero = () => {
                             <div className="px-6 flex-grow flex flex-col justify-center">
                                 <div className="bg-white rounded-2xl p-6 shadow-lg mb-6 transform -rotate-2 relative">
                                     <div className="flex items-center justify-center space-x-2 text-[#FF66CC] font-bold text-2xl">
-                                        <img src="/IconStar.png" className="w-8 h-8 object-contain" alt="" />
+                                        <img src={`${import.meta.env.BASE_URL}IconStar.png`} className="w-8 h-8 object-contain" alt="" />
                                         <span>Graphic</span>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ const Hero = () => {
                             className="absolute -left-12 sm:-left-16 top-1/4 bg-white rounded-full py-2 px-6 shadow-xl flex items-center space-x-2 z-30"
                         >
                             <div className="w-6 h-6 rounded-full bg-[#FF66CC] flex items-center justify-center">
-                                <img src="/IconLive.png" className="w-4 h-4" alt="Live" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                                <img src={`${import.meta.env.BASE_URL}IconLive.png`} className="w-4 h-4" alt="Live" onError={(e) => { e.currentTarget.style.display = 'none' }} />
                             </div>
                             <span className="font-bold text-black uppercase">Live</span>
                         </motion.div>
@@ -153,7 +153,7 @@ const Hero = () => {
                             className="absolute -left-10 sm:-left-12 bottom-1/3 bg-white rounded-full py-2 px-6 shadow-xl flex items-center space-x-2 z-30"
                         >
                             <div className="w-6 h-6 rounded-full bg-[#FF66CC] flex items-center justify-center">
-                                <img src="/IconVDO.png" className="w-4 h-4" alt="VDO" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                                <img src={`${import.meta.env.BASE_URL}IconVDO.png`} className="w-4 h-4" alt="VDO" onError={(e) => { e.currentTarget.style.display = 'none' }} />
                             </div>
                             <span className="font-bold text-black uppercase">VDO</span>
                         </motion.div>
@@ -172,7 +172,7 @@ const Hero = () => {
                             className="absolute -right-10 sm:-right-16 bottom-1/4 bg-white rounded-full py-2 px-6 shadow-xl flex items-center space-x-2 z-30 border border-gray-100"
                         >
                             <div className="w-6 h-6 rounded-full bg-[#FF66CC] flex items-center justify-center">
-                                <img src="/IconShop.png" className="w-4 h-4" alt="Shop" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                                <img src={`${import.meta.env.BASE_URL}IconShop.png`} className="w-4 h-4" alt="Shop" onError={(e) => { e.currentTarget.style.display = 'none' }} />
                             </div>
                             <span className="font-bold text-black uppercase">Shop</span>
                         </motion.div>
