@@ -1,9 +1,73 @@
 import { Play } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const Hero = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const fadeInterval = useRef<number | null>(null);
+
+    const fadeAudio = (video: HTMLVideoElement, targetVolume: number, duration: number) => {
+        if (fadeInterval.current) {
+            clearInterval(fadeInterval.current);
+        }
+
+        const initialVolume = video.volume;
+        const volumeChange = targetVolume - initialVolume;
+
+        if (Math.abs(volumeChange) < 0.01) return;
+
+        const steps = 20;
+        const stepTime = duration / steps;
+        let currentStep = 0;
+
+        fadeInterval.current = setInterval(() => {
+            currentStep++;
+            let newVolume = initialVolume + (volumeChange * (currentStep / steps));
+
+            if (newVolume > 1) newVolume = 1;
+            if (newVolume < 0) newVolume = 0;
+
+            video.volume = newVolume;
+
+            if (currentStep >= steps) {
+                if (fadeInterval.current) {
+                    clearInterval(fadeInterval.current);
+                }
+            }
+        }, stepTime);
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const video = videoRef.current;
+                    if (!video) return;
+
+                    if (entry.isIntersecting) {
+                        fadeAudio(video, 1, 800);
+                    } else {
+                        fadeAudio(video, 0, 800);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        const currentVideo = videoRef.current;
+        if (currentVideo) {
+            observer.observe(currentVideo);
+        }
+
+        return () => {
+            if (currentVideo) {
+                observer.unobserve(currentVideo);
+            }
+            if (fadeInterval.current) {
+                clearInterval(fadeInterval.current);
+            }
+        };
+    }, []);
 
     const togglePlay = () => {
         if (videoRef.current) {
