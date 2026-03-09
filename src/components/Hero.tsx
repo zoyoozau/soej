@@ -85,7 +85,7 @@ const Hero = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between">
 
                 {/* Left Content */}
-                <div className="w-full lg:w-5/12 text-left mb-16 lg:mb-0">
+                <div className="w-full lg:w-5/12 text-center lg:text-left mb-16 lg:mb-0">
                     <p className="text-gray-500 font-medium mb-4 text-sm sm:text-base tracking-wide">
                         Your On-Demand Content Team
                     </p>
@@ -94,7 +94,7 @@ const Hero = () => {
                         <br />
                         จบในที่เดียว
                     </h1>
-                    <p className="text-gray-600 text-base sm:text-lg mb-8 max-w-sm leading-relaxed">
+                    <p className="text-gray-600 text-base sm:text-lg mb-8 max-w-sm mx-auto lg:mx-0 leading-relaxed">
                         ถ่ายทำ ตัดต่อ ไลฟ์สด กราฟิก และหา KOL เลือกบริการเองได้ตามงบ ไม่ผูกสัญญาระยะยาว
                     </p>
                 </div>
