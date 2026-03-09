@@ -114,6 +114,8 @@ const Hero = () => {
                             src={`${import.meta.env.BASE_URL}วิดีโอเปิดตัวsoej.MP4`}
                             playsInline
                             loop
+                            autoPlay
+                            muted
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}
                             onEnded={() => setIsPlaying(false)}
