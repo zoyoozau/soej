@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 const Hero = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isMuted, setIsMuted] = useState(false);
     const fadeInterval = useRef<number | null>(null);
 
     const fadeAudio = (video: HTMLVideoElement, targetVolume: number, duration: number) => {
@@ -37,6 +38,28 @@ const Hero = () => {
         }, stepTime);
     };
 
+    // Attempt to auto-play with sound, fallback to muted if blocked by browser
+    useEffect(() => {
+        const attemptPlay = async () => {
+            const video = videoRef.current;
+            if (!video) return;
+
+            try {
+                video.muted = false;
+                await video.play();
+                setIsPlaying(true);
+                setIsMuted(false);
+            } catch (err) {
+                console.log("Autoplay with sound blocked, falling back to muted", err);
+                video.muted = true;
+                setIsMuted(true);
+                video.play().then(() => setIsPlaying(true)).catch(e => console.log("Muted autoplay also failed", e));
+            }
+        };
+
+        attemptPlay();
+    }, []);
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -45,7 +68,9 @@ const Hero = () => {
                     if (!video) return;
 
                     if (entry.isIntersecting) {
-                        fadeAudio(video, 1, 800);
+                        if (!video.muted) {
+                            fadeAudio(video, 1, 800);
+                        }
                     } else {
                         fadeAudio(video, 0, 800);
                     }
@@ -70,13 +95,24 @@ const Hero = () => {
     }, []);
 
     const togglePlay = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
+        const video = videoRef.current;
+        if (video) {
+            if (video.muted) {
+                // If it's playing muted, first click should unmute it
+                video.muted = false;
+                setIsMuted(false);
+                video.volume = 1;
+                video.play();
+                setIsPlaying(true);
             } else {
-                videoRef.current.play();
+                if (isPlaying) {
+                    video.pause();
+                    setIsPlaying(false);
+                } else {
+                    video.play();
+                    setIsPlaying(true);
+                }
             }
-            setIsPlaying(!isPlaying);
         }
     };
 
@@ -115,17 +151,18 @@ const Hero = () => {
                             playsInline
                             loop
                             autoPlay
-                            muted
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}
                             onEnded={() => setIsPlaying(false)}
                         />
 
                         {/* Play Button Overlay */}
-                        {!isPlaying && (
+                        {(!isPlaying || isMuted) && (
                             <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm transition-opacity group-hover:bg-white/10">
                                 <div className="bg-white/80 backdrop-blur-md text-pink-500 px-6 py-3 flex items-center space-x-2 rounded-full shadow-lg transform transition-transform group-hover:scale-105">
-                                    <span className="font-semibold tracking-wide lowercase">soej.com</span>
+                                    <span className="font-semibold tracking-wide lowercase">
+                                        {isMuted ? "tap to unmute" : "soej.com"}
+                                    </span>
                                     <Play className="w-5 h-5 fill-current" />
                                 </div>
                             </div>
